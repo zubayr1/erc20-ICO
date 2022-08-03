@@ -6,14 +6,15 @@ contract DappToken
 {
     uint256 public totalSupply;
 
+    mapping(address => uint256) public balanceOf; 
+
     //constructor
-    constructor(uint256 totalsupply)
+    constructor(uint256 _totalsupply)
   {
-    totalSupply = totalsupply;
+    totalSupply = _totalsupply;
+    // allocate the initial supply
+    balanceOf[msg.sender] = _totalsupply;
   }
 
 
-    // set total number of tokens
-
-    //read the total number of tokens
 }
