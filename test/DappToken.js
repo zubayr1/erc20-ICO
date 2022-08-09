@@ -2,6 +2,31 @@ var DappToken = artifacts.require("./DappToken.sol");
 
 contract('DappToken', function(accounts)
 {
+
+    it('initializes contract with the correct values', function()
+    {
+        return DappToken.deployed().then(function(instance)
+        {
+            tokenInstance = instance;
+
+            return tokenInstance.name();
+        })
+        .then(function(name)
+        {
+            assert.equal(name, 'Rawbin', 'has correct name');
+            return tokenInstance.symbol();
+        })
+        .then(function(symbol)
+        {
+            assert.equal(symbol, 'RWB', 'has correct symbol');
+            return tokenInstance.standard();
+        })
+        .then(function(standard)
+        {
+            assert.equal(standard, 'ERC_Rawbinv1.0', 'has correct symbol');
+        })
+    })
+
     it('sets total supply', function()
     {
         return DappToken.deployed().then(function(instance) //since asynchronous
