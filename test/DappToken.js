@@ -44,4 +44,12 @@ contract('DappToken', function(accounts)
             assert.equal(adminBalance.toNumber(), 1000000, 'allocates balance to admin account');
         })
     })
+
+    it('transfer token', function()
+    {
+        return DappToken.deployed().then(function(instance)
+        {
+            tokenInstance = instance;
+        })
+    })
 })
