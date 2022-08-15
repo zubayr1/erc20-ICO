@@ -53,8 +53,22 @@ contract DappToken
   function approve(address _spender, uint256 _value) public returns(bool)
   {
     allowance[msg.sender][_spender] = _value;
-    
+
     emit Approval(msg.sender, _spender, _value);
+    return true;
+  }
+
+  function transferfrom(address _from, address _to, uint256 _value) public returns(bool)
+  {
+    require((_value<= balanceOf[_from]));
+
+    require(_value<=allowance[_from][msg.sender]);
+
+    balanceOf[_from] -= _value;
+    balanceOf[_to] += _value;
+
+    emit Transfer(_from, _to, _value);
+
     return true;
   }
 
